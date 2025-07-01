@@ -53,20 +53,58 @@ Deployed on Streamlit Cloud:
 
 To run this project locally:
 
-### 1. Clone the Repository
+1. Clone the Repository:
+
+```bash
 git clone https://github.com/SandeepV-2k5/Travel_Planner.git
 cd Travel_Planner
+```
 
-### 2. Create and Activate Virtual Environment
+2. Create and Activate Virtual Environment:
+
+```bash
 python -m venv venv
 venv\Scripts\activate  # For Windows
+```
 
-### 3. Install Required Dependencies
+3. Install Required Dependencies:
+
+```bash
 pip install -r requirements.txt
+```
 
-### 4. Set Your Gemini API Key
+4. Set Your Gemini API Key:
+
+```bash
 Create a .env file in the root directory:
 YOUR_GEMINI_API_KEY=your_actual_api_key_here
+```
 
-### 5. Run the App
+5. Run the App:
+
+```bash
 streamlit run app.py
+```
+
+---
+
+## How to run the website
+
+### Go to the web app
+
+---
+
+### Enter destination, trip duration, budget, and preferences
+
+---
+
+### Click on "Generate Itinerary"
+
+---
+
+### View your personalized day-wise travel plan
+
+---
+
+### Use it as your travel guide! 🎒✈️
+
