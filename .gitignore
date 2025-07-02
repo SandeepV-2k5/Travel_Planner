@@ -1,4 +1,4 @@
-# Byte-compiled / cache files
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 
@@ -8,9 +8,6 @@ venv/
 # Environment variables
 .env
 
-# Streamlit generated
-*.streamlit/
-
-# OS files
+# System files
 .DS_Store
 Thumbs.db
