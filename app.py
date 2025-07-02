@@ -13,7 +13,7 @@ genai.configure(api_key=os.getenv("YOUR_GEMINI_API_KEY"))
 
 model = genai.GenerativeModel("gemini-1.5-flash")
 
-st.set_page_config(page_title="Travel Planner Bot", page_icon="🧳", layout="centered")
+st.set_page_config(page_title="Travel Planner", page_icon="🧳", layout="centered")
 st.title("🧭 Travel Planner")
 st.write("Plan your perfect trip based on destination, dates, interests, transport, budget, and more!")
 
