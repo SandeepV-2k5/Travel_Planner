@@ -15,7 +15,7 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 
 st.set_page_config(page_title="Travel Planner Bot", page_icon="🧳", layout="centered")
 st.title("🧭 Travel Planner")
-st.write("Plan your perfect trip based on destination, dates, interests, budget, and more!")
+st.write("Plan your perfect trip based on destination, dates, interests, transport, budget, and more!")
 
 # Inputs
 start_location = st.text_input("Your Starting Location", placeholder="e.g., Chennai, Delhi")
@@ -27,7 +27,6 @@ with col1:
 with col2:
     end_date = st.date_input("End Date")
 
-# Calculate number of days
 trip_days = (end_date - start_date).days
 if trip_days <= 0:
     st.warning("Please ensure end date is after the start date.")
@@ -51,17 +50,14 @@ default_preferences = [
 ]
 selected_preferences = st.multiselect("Choose Your Preferred Outing Types", default_preferences)
 
-# Handle "Other" preference
 custom_preferences = []
 if "Other" in selected_preferences:
     custom_input = st.text_input("Add your own outing types (press Enter to save)", key="custom")
-    if custom_input:
-        if custom_input not in custom_preferences:
-            custom_preferences.append(custom_input)
+    if custom_input and custom_input not in custom_preferences:
+        custom_preferences.append(custom_input)
 
 final_preferences = [p for p in selected_preferences if p != "Other"] + custom_preferences
 
-# Show final preferences visually
 if final_preferences:
     st.success(f"✅ Selected Preferences: {', '.join(final_preferences)}")
 
@@ -72,23 +68,29 @@ if st.button("Generate Itinerary"):
     else:
         with st.spinner("Planning your dream trip..."):
             prompt = f"""
-            Plan a detailed travel itinerary for {people} people traveling from {start_location} to {destination} between {start_date.strftime('%d %B %Y')} and {end_date.strftime('%d %B %Y')} ({trip_days} days).
-            Budget: ₹{min_budget} – ₹{max_budget}
-            Interests: {', '.join(final_preferences)}
-            Preferred Travel Mode: {transport_mode}
-            Preferred Food: {food_type}
+            Plan a complete round-trip travel itinerary for {people} people.
+            Starting from: {start_location}
+            Destination: {destination}
+            Dates: From {start_date.strftime('%d %B %Y')} to {end_date.strftime('%d %B %Y')} ({trip_days} days)
+            Budget range: ₹{min_budget} – ₹{max_budget}
+            Preferences: {', '.join(final_preferences)}
+            Preferred Transport: {transport_mode}
+            Food Type: {food_type}
+
             Ensure:
-            - The plan includes travel from {start_location} to {destination}
-            - The plan fits the budget range
-            - Highlights 1–3 main things per day
-            - Includes estimated cost, local travel, and food recommendations
-            - Tailors activities to interests and chosen transport mode
-            - Vegetarian/Non-Vegetarian options where applicable
+            - Add an outbound journey from {start_location} to {destination} and a return trip back
+            - Estimate travel duration for each leg (based on mode of transport)
+            - Include hotel/accommodation suggestions with approximate prices
+            - Suggest 1–3 activities per day
+            - Include food options based on the food preference
+            - Mention total estimated cost for the trip (roughly)
+            - Format clearly with daily breakdown
 
             Format:
-            Day 1: ...
+            Day 1: Travel + Activities
             Day 2: ...
             ...
+            Final Day: Return trip
             """
 
             try:
@@ -97,7 +99,7 @@ if st.button("Generate Itinerary"):
                 st.subheader("🗓️ Your Itinerary:")
                 st.markdown(itinerary)
 
-                # Generate PDF
+                # PDF download
                 pdf = FPDF()
                 pdf.add_page()
                 pdf.set_font("Arial", size=12)
