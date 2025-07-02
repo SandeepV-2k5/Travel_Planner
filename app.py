@@ -18,8 +18,8 @@ st.title("🧭 Travel Planner")
 st.write("Plan your perfect trip based on destination, dates, interests, transport, budget, and more!")
 
 # Inputs
-start_location = st.text_input("Your Starting Location", placeholder="e.g., Chennai, Delhi")
-destination = st.text_input("Destination", placeholder="e.g., Goa, Paris")
+start_location = st.text_input("Your Starting Location", placeholder="example: Chennai, Delhi")
+destination = st.text_input("Destination", placeholder="example: Goa, Paris")
 
 col1, col2 = st.columns(2)
 with col1:
