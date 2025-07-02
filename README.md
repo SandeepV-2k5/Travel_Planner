@@ -93,38 +93,34 @@ streamlit run app.py
 
 ## How to run the website
 
-## Go to App
-
-![image]()
-
----
-
 ## Enter your Starting Location, Desired Destination, Start Date & End Date, Minimum Budget (in ₹) & Maximum Budget (in ₹)
 
-![image]()
+![image](https://github.com/user-attachments/assets/31a819fa-5dd7-4e5e-8625-59699968c7d4)
 
 ---
 
 ## Enter Number of people in Trip, Preferred Mode of Transport, Preferred Food Type and Preferred Outing Types
 
-![image]()
+![image](https://github.com/user-attachments/assets/a22e8148-6b1b-46d3-ad62-955a0115a157)
 
 ---
 
  ## After filling all the fields, click on Generate Itinerary
 
- ![image]()
+ ![image](https://github.com/user-attachments/assets/4cebf1a5-2311-4fed-a298-28b0ed314e20)
 
  ---
 
  ## Output Itinerary is generated
 
- ![image]()
- ![image]()
- ![image]()
+ ![image](https://github.com/user-attachments/assets/a21f598e-93ba-4269-afb8-3f685f4c4a00)
+
+ ![image](https://github.com/user-attachments/assets/75e61441-0679-4414-b10e-db13709c8aea)
+
+ ![image](https://github.com/user-attachments/assets/290ec256-6d0d-4ecb-810e-815957d3a966)
 
  ---
 
  ## The Itinerary is also downloadable as pdf
 
- ![image]()
+ ![image](https://github.com/user-attachments/assets/78ef0ee9-edfb-4123-bcf0-0702e071c06f)
