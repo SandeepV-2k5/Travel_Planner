@@ -2,7 +2,6 @@ import streamlit as st
 import google.generativeai as genai
 from dotenv import load_dotenv
 import os
-import requests
 from fpdf import FPDF
 import tempfile
 from datetime import datetime
@@ -10,7 +9,6 @@ from datetime import datetime
 # Load environment variables
 load_dotenv()
 genai.configure(api_key=os.getenv("YOUR_GEMINI_API_KEY"))
-OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
 model = genai.GenerativeModel("gemini-1.5-flash")
 
@@ -95,29 +93,6 @@ if st.button("Generate Itinerary"):
                 itinerary = response.text
                 st.subheader("🗓️ Your Itinerary:")
                 st.markdown(itinerary)
-
-                # Weather Forecast for Start Date
-                st.subheader("🌦️ Weather Forecast (Start Date)")
-                weather_url = f"http://api.openweathermap.org/data/2.5/forecast?q={destination}&appid={OPENWEATHER_API_KEY}&units=metric"
-                weather_response = requests.get(weather_url)
-
-                if weather_response.status_code == 200:
-                    forecast = weather_response.json()
-                    date_str = start_date.strftime("%Y-%m-%d")
-                    found = False
-                    for item in forecast["list"]:
-                        if date_str in item["dt_txt"]:
-                            desc = item["weather"][0]["description"].title()
-                            temp = item["main"]["temp"]
-                            humidity = item["main"]["humidity"]
-                            rain_chance = item.get("pop", 0) * 100
-                            st.markdown(f"**{date_str}**: {desc}, {temp}°C, 💧Humidity: {humidity}%, 🌧️ Rain Chance: {rain_chance:.0f}%")
-                            found = True
-                            break
-                    if not found:
-                        st.info("No detailed weather data found for that day.")
-                else:
-                    st.error("Weather info not available.")
 
                 # Generate PDF
                 pdf = FPDF()
