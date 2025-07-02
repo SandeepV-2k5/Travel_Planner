@@ -1,13 +1,16 @@
-# Ignore Python bytecode and cache
+# Byte-compiled / cache files
 __pycache__/
 *.py[cod]
 
-# Ignore virtual environments
+# Virtual environment
 venv/
 
-# Ignore environment variables file with secrets
+# Environment variables
 .env
 
-# Ignore system files
+# Streamlit generated
+*.streamlit/
+
+# OS files
 .DS_Store
 Thumbs.db
