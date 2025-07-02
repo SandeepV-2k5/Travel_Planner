@@ -2,6 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 from dotenv import load_dotenv
 import os
+import requests
 from fpdf import FPDF
 import tempfile
 from datetime import datetime
@@ -17,6 +18,7 @@ st.title("🧭 Travel Planner")
 st.write("Plan your perfect trip based on destination, dates, interests, budget, and more!")
 
 # Inputs
+start_location = st.text_input("Your Starting Location", placeholder="e.g., Chennai, Delhi")
 destination = st.text_input("Destination", placeholder="e.g., Goa, Paris")
 
 col1, col2 = st.columns(2)
@@ -65,17 +67,18 @@ if final_preferences:
 
 # Generate Itinerary
 if st.button("Generate Itinerary"):
-    if not destination or not final_preferences or trip_days <= 0:
+    if not destination or not start_location or not final_preferences or trip_days <= 0:
         st.warning("Please fill all fields correctly!")
     else:
         with st.spinner("Planning your dream trip..."):
             prompt = f"""
-            Plan a detailed travel itinerary for {people} people visiting {destination} from {start_date.strftime('%d %B %Y')} to {end_date.strftime('%d %B %Y')} ({trip_days} days).
+            Plan a detailed travel itinerary for {people} people traveling from {start_location} to {destination} between {start_date.strftime('%d %B %Y')} and {end_date.strftime('%d %B %Y')} ({trip_days} days).
             Budget: ₹{min_budget} – ₹{max_budget}
             Interests: {', '.join(final_preferences)}
             Preferred Travel Mode: {transport_mode}
             Preferred Food: {food_type}
             Ensure:
+            - The plan includes travel from {start_location} to {destination}
             - The plan fits the budget range
             - Highlights 1–3 main things per day
             - Includes estimated cost, local travel, and food recommendations
