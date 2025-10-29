@@ -7,22 +7,11 @@ from fpdf import FPDF
 import tempfile
 from datetime import datetime
 
-import google.generativeai as genai
-import os
-
-genai.configure(api_key=os.getenv("AIzaSyCcpO2cFJFScyJBnHvuR15-gCIm2tgqtqk"))
-
-st.write("Available models:")
-for model in genai.list_models():
-    st.write(model.name)
-
-
-
 # Load environment variables
 load_dotenv()
 genai.configure(api_key=os.getenv("YOUR_GEMINI_API_KEY"))
 
-model = genai.GenerativeModel("gemini-1.5-flash-002")
+model = genai.GenerativeModel("gemini-1.5-pro")
 
 st.set_page_config(page_title="Travel Planner", page_icon="🧳", layout="centered")
 st.title("🧭 Travel Planner")
