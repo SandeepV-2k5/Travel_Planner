@@ -7,6 +7,17 @@ from fpdf import FPDF
 import tempfile
 from datetime import datetime
 
+import google.generativeai as genai
+import os
+
+genai.configure(api_key=os.getenv("AIzaSyCcpO2cFJFScyJBnHvuR15-gCIm2tgqtqk"))
+
+st.write("Available models:")
+for model in genai.list_models():
+    st.write(model.name)
+
+
+
 # Load environment variables
 load_dotenv()
 genai.configure(api_key=os.getenv("YOUR_GEMINI_API_KEY"))
