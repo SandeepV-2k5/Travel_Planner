@@ -9,7 +9,7 @@ from datetime import datetime
 
 # Load environment variables
 load_dotenv()
-genai.configure(api_key=os.environ("YOUR_GEMINI_API_KEY"))
+genai.configure(api_key=os.environ["YOUR_GEMINI_API_KEY"])
 
 model = genai.GenerativeModel("gemini-1.5-flash")
 
