@@ -11,7 +11,7 @@ from datetime import datetime
 load_dotenv()
 genai.configure(api_key=os.environ["YOUR_GEMINI_API_KEY"])
 
-model = genai.GenerativeModel("models/gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 st.set_page_config(page_title="Travel Planner", page_icon="🧳", layout="centered")
 st.title("🧭 Travel Planner")
